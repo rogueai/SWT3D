@@ -1,0 +1,66 @@
+	display.asyncExec(new Runnable() {
+		// constants
+		private static final int NO_DELAYS_PER_YIELD = 16;
+		/*
+		 * Number of iterations with a sleep delay of 0 ms before the
+		 * animation thread yields to other running threads.
+		 */
+		private static final int MAX_RENDER_SKIPS = 5;
+		/*
+		 * no. of renders that can be skipped in any one animation loop;
+		 * i.e. the games state is updated but not rendered.
+		 */
+		// globals
+		private long gameStartTime;
+		private long period;
+		// period between drawing in nanosecs
+		private volatile boolean isRunning = false;
+	
+		// used to stop the animation thread
+	
+		public void run() {
+			if (!canvas.isDisposed()) {
+				// timing-related variables
+				long beforeTime, afterTime, timeDiff, sleepTime;
+				long overSleepTime = 0L;
+				int noDelays = 0;
+				long excess = 0L;
+				gameStartTime = System.nanoTime();
+				beforeTime = gameStartTime;
+	
+				framework.updateFrame();
+	
+				afterTime = System.nanoTime();
+				timeDiff = afterTime - beforeTime;
+				sleepTime = (period - timeDiff) - overSleepTime;
+				if (sleepTime > 0) { // time left in cycle
+					try {
+						Thread.sleep(sleepTime / 1000000L);// nano->ms
+					} catch (InterruptedException ex) {
+					}
+					overSleepTime = (System.nanoTime() - afterTime) - sleepTime;
+				} else { // sleepTime <= 0;
+					// this cycle took longer than period
+					excess -= sleepTime;
+					// store excess time value
+					overSleepTime = 0L;
+					if (++noDelays >= NO_DELAYS_PER_YIELD) {
+						Thread.yield();
+						// give another thread a chance to run
+						noDelays = 0;
+					}
+				}
+				beforeTime = System.nanoTime();
+	
+				// If the rendering is taking too long, then update the game
+				// state without rendering it, to get the UPS nearer to the
+				// required frame rate.
+				int skips = 0;
+				while ((excess > period) && (skips < MAX_RENDER_SKIPS)) {
+					excess -= period;
+					skips++;
+				}
+				display.asyncExec(this);
+			}
+		}
+	});

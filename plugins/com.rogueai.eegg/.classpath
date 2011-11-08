@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="lib" path="lwjgl-native/windows/"/>
+	<classpathentry exported="true" kind="lib" path="lib/ardor3d-awt-0.7.jar" sourcepath="C:/Sviluppo/ardor3d/ardor3d-awt-0.7-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/guava-10.0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/aopalliance-1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/guice-1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ardor3d-animation-0.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ardor3d-collada-0.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ardor3d-core-0.7.jar" sourcepath="C:/Sviluppo/ardor3d/ardor3d-core-0.7-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ardor3d-effects-0.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ardor3d-extras-0.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ardor3d-lwjgl-0.7.jar" sourcepath="C:/Sviluppo/ardor3d/ardor3d-lwjgl-0.7-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ardor3d-swt-0.7.jar" sourcepath="C:/Sviluppo/ardor3d/ardor3d-swt-0.7-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ardor3d-terrain-0.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ardor3d-ui-0.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/lwjgl-native.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/lwjgl.jar" sourcepath="C:/Sviluppo/jmonkeyplatform/jmonkeyplatform/libs/lwjgl-source-2.8.1.zip">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="com.rogueai.eegg/lwjgl-native/windows"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry excluding="com/rogueai/eegg/jme3/" kind="src" path="src"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
